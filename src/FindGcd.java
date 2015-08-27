@@ -1,12 +1,47 @@
 import java.math.*;
 import java.text.*;
+import java.util.Date;
+import java.util.Random;
 public class FindGcd 
 {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		BigInteger result;
+		BigInteger a=new BigInteger("37685432423534656547567868764343248554"),b=new BigInteger("23454645634324235643243257658435435433243245472366");
+		System.out.println(FindGcd.findGcd(a, b));
+		BigInteger gcd=FindGcd.findGcd(a, b);
+		if(!gcd.equals(new BigInteger("1")))
+		{
+			a=a.divide(gcd);
+			b=b.divide(gcd);
+		}
+		//System.out.println(a.toString()+b.toString());
+		//System.out.println(a.modInverse(b));
+		long startMili=System.currentTimeMillis();
+		result=FindGcd.FindInverMod(a,b);
+		System.out.println(result);
+		System.out.println(FindGcd.IsInverMod(a, result, b));
+		long endMili=System.currentTimeMillis();
+		System.out.println("time used"+(endMili-startMili));
+		
+		
+		 startMili=System.currentTimeMillis();
+		//result=FindGcd.FindInverMod2(a,b);
+		System.out.println(result);
+		System.out.println(FindGcd.IsInverMod(a, result, b));
+		 endMili=System.currentTimeMillis();
+		System.out.println("time used"+(endMili-startMili));
+		Random rnd = new Random(new Date().getTime());
+	    System.out.println(BigInteger.probablePrime(1024, rnd));
+	
+
+}
 	public static BigInteger StringToBig(String s)
 	{
 		return new BigInteger(s);
 	}
-	public static BigInteger FindGcd(BigInteger x, BigInteger y)
+	public static BigInteger findGcd(BigInteger x, BigInteger y)
 	{
 		
 		
@@ -20,11 +55,11 @@ public class FindGcd
 		}
 		if(x.remainder(y).equals(new BigInteger("0")))
 		return y;
-		else return FindGcd(y,x.remainder(y));
+		else return findGcd(y,x.remainder(y));
 	}
 	public static BigInteger FindInverMod(BigInteger c, BigInteger mod)
 	{
-		if(!FindGcd(c,mod).equals(new BigInteger("1")))
+		if(!findGcd(c,mod).equals(new BigInteger("1")))
 		return new BigInteger("0");
 	
 		if(c.compareTo(mod)>0)
@@ -64,7 +99,7 @@ public class FindGcd
 	}
 	public static BigInteger FindInverMod2(BigInteger c, BigInteger mod)
 	{
-		if(!FindGcd(c,mod).equals(new BigInteger("1")))
+		if(!findGcd(c,mod).equals(new BigInteger("1")))
 			return new BigInteger("0");
 		if(c.compareTo(mod)>0)
 		{
