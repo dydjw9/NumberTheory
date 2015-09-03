@@ -12,10 +12,10 @@ public class Run {
 		
 		RsaEncryption Rsa=new RsaEncryption(1024);
 		Rsa.printKeys();
-		System.out.println(Rsa.StrToBigInt(msg)[0]);
-		msg=Rsa.Encryption(msg);
+		//System.out.println(Rsa.StrToBigInt(msg)[0]);
+		//msg=Rsa.Encryption(msg);
 		System.out.println(msg);
-		msg=Rsa.Decryption(msg);
+		//msg=Rsa.Decryption(msg);
 		System.out.println(msg);
 		long endMili=System.currentTimeMillis();
 		System.out.println("time used"+(endMili-startMili));

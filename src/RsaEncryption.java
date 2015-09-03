@@ -1,3 +1,4 @@
+
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.Random;
@@ -6,48 +7,29 @@ public class RsaEncryption {
 
 	
 	private BigInteger PublicKey,PrivateKey,Mod;
-	private int bits;
-	public RsaEncryption(int b)
+	public RsaEncryption(int bits)
 	{
-		bits=b;
 		Random rnd = new Random(new Date().getTime());
 		BigInteger p,q,n,e,d,eule;
 		p=BigInteger.probablePrime(bits, rnd);
-		//System.out.println(p);
 		q=BigInteger.probablePrime(bits, rnd);
-		//System.out.println(q);
 		n=q.multiply(p);
-		//System.out.println(n);
 		eule=q.subtract(new BigInteger("1")).multiply(p.subtract(new BigInteger("1")));
-		//System.out.println(eule);
-		//do{
-			e=BigInteger.probablePrime(bits+1, rnd);//}
+		do{e=BigInteger.probablePrime(bits, rnd);}
 		
-		//while(!findGcd(e,eule).equals(new BigInteger("1")));
-		//System.out.println(e);
+		while(!findGcd(e,eule).equals(new BigInteger("1")));
 		d=FindInverMod(e,eule);
-		//System.out.println(d);
 		PrivateKey=d;
 		PublicKey=e;
 		Mod=n;
 	}
-	public String Encryption(String s)
+	public BigInteger Encryption(BigInteger Msg)
 	{
-		BigInteger[] Msg=StrToBigInt(s);
-		for(int i=0;i<Msg.length;i++)
-		{
-			Msg[i]=Msg[i].modPow(PublicKey, Mod);
-		}
-		return BigIntToStr(Msg);
+		return Msg.modPow(PublicKey, Mod);
 	}
-	public String Decryption(String s)
+	public BigInteger Decryption(BigInteger Msg)
 	{
-		BigInteger[] Msg=StrToBigInt(s);
-		for(int i=0;i<Msg.length;i++)
-		{
-			Msg[i]=Msg[i].modPow(PrivateKey, Mod);
-		}
-		return BigIntToStr(Msg);
+		return Msg.modPow(PrivateKey, Mod);
 	}
 	public void printKeys()
 	{
@@ -111,38 +93,5 @@ public class RsaEncryption {
 			b2=mod.add(b2);
 		}
 		return b2;
-	}
-	public BigInteger[] StrToBigInt(String s)
-	{
-		int unitlength=bits/8,length;      //unitlength is the longest string that can be encryoted once, length is the length of BigInteger[]
-		byte b[] = s.getBytes();           //get bytes of msg
-		
-		length=b.length/unitlength;           //calculate length
-		System.out.println(s);
-		System.out.println("blength is" + b.length);
-		System.out.println("length is" + length);
-		  BigInteger[] retn=new BigInteger[length+1];
-		 for(int j=0;j<=length;j++)
-		 {
-			 String ret = ""; 
-		for (int i = 0; i < b.length; i++) {  
-	        String hex = Integer.toString(b[ i ] & 0xFF);  
-	    
-	     ret += hex;  
-	  } 
-		retn[j]=new BigInteger(ret);}
-		 System.out.println("retnlength is" + retn.length);
-		return retn;
-	}
-	public  String BigIntToStr(BigInteger[] bigint)
-	{   String ret = ""; 
-		for(int i=0;i<bigint.length;i++)
-		{
-		byte[] b=bigint[i].toByteArray();
-		String t = new String(b);
-		ret+=t;
-		
-		}
-		return ret;
 	}
 }
