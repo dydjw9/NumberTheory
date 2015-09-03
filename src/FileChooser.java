@@ -20,10 +20,24 @@ public static File FilePicker()
 
 	}
 	catch (Exception e) {  
-        // TODO自动生成的 catch 块  
+       
         e.printStackTrace();  
      }
 	return fileChooser.getSelectedFile();
 	
+	}
+public static File FileSaver()
+
+	{
+	JFileChooser fileChooser = new JFileChooser();
+	try{
+	fileChooser.showSaveDialog(null);
+
+	}
+	catch (Exception e) {  
+       
+        e.printStackTrace();  
+     }
+	return fileChooser.getSelectedFile();
 	}
 }

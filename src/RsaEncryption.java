@@ -2,9 +2,14 @@
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.Random;
+import java.io.*;
+
 
 public class RsaEncryption {
-
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub}
+		
+		}
 	
 	private BigInteger PublicKey,PrivateKey,Mod;
 	public RsaEncryption(int bits)
