@@ -8,6 +8,7 @@ public class FileChooser {
 	public static void main(String[] args) {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.showSaveDialog(null);
+		
 
 		// TODO Auto-generated method stub
 		

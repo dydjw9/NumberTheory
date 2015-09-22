@@ -4,12 +4,13 @@ import java.text.*;
 import java.util.logging.*;
 public class Run {
 
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		long startMili=System.currentTimeMillis();
 		String msg=new String("avcd");
-		
+
 		RsaEncryption Rsa=new RsaEncryption(1024);
 		Rsa.printKeys();
 		//System.out.println(Rsa.StrToBigInt(msg)[0]);
@@ -20,9 +21,9 @@ public class Run {
 		long endMili=System.currentTimeMillis();
 		System.out.println("time used"+(endMili-startMili));
 		
-		 String s = "avcd";//String变量 
+		 String s = "avcd";//Stringå�˜é‡� 
 
-		 byte b[] = s.getBytes();//String转换为byte[] 
+		 byte b[] = s.getBytes();//Stringè½¬æ�¢ä¸ºbyte[] 
 		 System.out.println(b);
 		 System.out.println(b[0]&0xFF);
 		 String ret = "111";  

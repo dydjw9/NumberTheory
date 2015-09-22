@@ -52,7 +52,7 @@ public class AesEncryption {
 	content=new String("mydeart");
 	password=new String("123666");
 	System.out.println("result is "+new String(encry));
-	{    try {  
+	   try {  
         KeyGenerator kgen = KeyGenerator.getInstance("AES");  
         kgen.init(128, new SecureRandom(password.getBytes()));  
         SecretKey secretKey = kgen.generateKey();  
@@ -76,6 +76,4 @@ public class AesEncryption {
 }  
 		
 	}
-
-}
 }
